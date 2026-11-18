@@ -57,7 +57,7 @@ const MEMORIES_DATA = [
   {
     tag: "Chapter 06",
     title: "Terus Melangkah Bersama 💖",
-    date: "Edit Tanggal & Judul Momen ke-6",
+    date: "inii pass saat kepantaii",
     image: "images/foto6.jpg",
     story: "Makasih udah bertahan, berjuang, dan tetap semangat sejauh ini, Vhenix. Masih banyak banget mimpi dan tempat seru yang mau aku tuju bareng kamu.",
     tilt: "1.5deg",
