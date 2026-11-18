@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Untuk Vhenix Cintaku 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Canvas Partikel Ledakan Love & Sparkles -->
+  <canvas id="loveCanvas" aria-hidden="true"></canvas>
+
+  <!-- Tombol Musik Latar Melayang -->
+  <button id="musicToggle" class="music-pill hidden" type="button" aria-label="Putar atau matikan musik">
+    <span id="musicIcon" class="music-icon">🎵</span>
+    <span id="musicLabel">Lagu Kita: ON</span>
+  </button>
+
+  <!-- Audio Opsional: jika kamu menaruh file music.mp3 di folder utama, otomatis dipakai -->
+  <audio id="customBgm" src="music.mp3" loop preload="none"></audio>
+
+  <!-- =========================================================
+       SCREEN 1: CUTE SECRET PASSCODE GATE (060307)
+  ========================================================== -->
+  <main id="screenPasscode" class="screen screen-active">
+    <div class="floating-doodles" aria-hidden="true">
+      <span class="doodle d1">🌸</span>
+      <span class="doodle d2">💜</span>
+      <span class="doodle d3">🍑</span>
+      <span class="doodle d4">✨</span>
+      <span class="doodle d5">🧸</span>
+    </div>
+
+    <section class="passcode-card" id="passcodeCard">
+      <div class="cute-mascot" id="mascotFace" aria-hidden="true">
+        <div class="ear left"></div>
+        <div class="ear right"></div>
+        <div class="face">
+          <div class="eyes">
+            <span class="eye"></span>
+            <span class="eye"></span>
+          </div>
+          <div class="blush left"></div>
+          <div class="blush right"></div>
+          <div class="mouth" id="mascotMouth"></div>
+        </div>
+      </div>
+
+      <span class="badge-pill">Secret Vault untuk Vhenix ✨</span>
+      <h1 class="passcode-title">Masukin Kode Rahasia Kita Dulu Ya~</h1>
+      <p class="passcode-subtitle" id="passcodeHint">Clue: 6 angka spesial yang selalu kamu inget 💌</p>
+
+      <!-- 6 Indikator Hati -->
+      <div class="pin-hearts" id="pinHearts" aria-label="Indikator 6 digit kode">
+        <span class="heart-dot" data-index="0">♡</span>
+        <span class="heart-dot" data-index="1">♡</span>
+        <span class="heart-dot" data-index="2">♡</span>
+        <span class="heart-dot" data-index="3">♡</span>
+        <span class="heart-dot" data-index="4">♡</span>
+        <span class="heart-dot" data-index="5">♡</span>
+      </div>
+
+      <!-- Keypad Imut -->
+      <div class="keypad-grid" role="group" aria-label="Tombol angka kode rahasia">
+        <button type="button" class="key-btn" data-key="1">1</button>
+        <button type="button" class="key-btn" data-key="2">2</button>
+        <button type="button" class="key-btn" data-key="3">3</button>
+        <button type="button" class="key-btn" data-key="4">4</button>
+        <button type="button" class="key-btn" data-key="5">5</button>
+        <button type="button" class="key-btn" data-key="6">6</button>
+        <button type="button" class="key-btn" data-key="7">7</button>
+        <button type="button" class="key-btn" data-key="8">8</button>
+        <button type="button" class="key-btn" data-key="9">9</button>
+        <button type="button" class="key-btn key-action" data-action="clear" aria-label="Hapus semua">C</button>
+        <button type="button" class="key-btn" data-key="0">0</button>
+        <button type="button" class="key-btn key-action" data-action="back" aria-label="Hapus satu angka">⌫</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       SCREEN 2: WELCOME SCREEN + TUMPUKAN POLAROID + TOMBOL KABUR
+  ========================================================== -->
+  <section id="screenWelcome" class="screen screen-hidden" aria-hidden="true">
+    <!-- Background Tumpukan Foto Polaroid -->
+    <div class="polaroid-pile-bg" id="polaroidPileBg" aria-hidden="true"></div>
+    <div class="welcome-backdrop-tint" aria-hidden="true"></div>
+
+    <div class="welcome-container" id="welcomeContainer">
+      <div class="welcome-glass-card">
+        <div class="sparkle-tag">💖 Unlocked with Love 💖</div>
+        <h1 class="welcome-title">Hai Vhenix cintaku sayangku</h1>
+        <p class="welcome-message">
+          Makasih ya udah selalu berjuang hebat dan semangat terus setiap hari. 
+          Aku bangga banget sama kamu, sayang! Mau lihat perjalanan kecil kita sampai hari ini?
+        </p>
+
+        <!-- Pesan lucu setiap kali tombol Keluar kabur -->
+        <p class="runaway-speech" id="runawaySpeech" aria-live="polite">
+          Pilih tombolnya pelan-pelan ya~ 🥺
+        </p>
+
+        <div class="choice-stage" id="choiceStage">
+          <button type="button" id="btnEnter" class="btn-enter">
+            Masuk 💕
+          </button>
+          <button type="button" id="btnRunaway" class="btn-exit">
+            Keluar 🚪
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SCREEN 3: REKAPAN 6 MOMEN POLAROID (SATU PER SATU -> GABUNG)
+  ========================================================== -->
+  <section id="screenRecap" class="screen screen-hidden" aria-hidden="true">
+    <header class="recap-hero">
+      <span class="badge-pill" id="recapBadge">Our Little Scrapbook 📖</span>
+      <h2 class="recap-title" id="recapTitle">Seberapa Jauh Kita Melangkah Bersama ✨</h2>
+      <p class="recap-subtitle" id="recapSubtitle">
+        Kita lihat satu per satu ya sayang — tap fotonya buat kasih love! 💕
+      </p>
+    </header>
+
+    <!-- TAHAP 1: TAMPILAN SATU PER SATU -->
+    <div class="single-memory-stage" id="singleMemoryStage">
+      <div class="step-progress-wrap">
+        <span class="step-counter-text" id="stepCounterText">Kenangan 1 dari 6</span>
+        <div class="step-dots" id="stepDots" aria-label="Progres kenangan"></div>
+      </div>
+
+      <div class="single-card-slot" id="singleCardSlot"></div>
+
+      <div class="step-nav-controls">
+        <button type="button" id="btnPrevMemory" class="btn-step-prev">
+          ← Sebelumnya
+        </button>
+        <button type="button" id="btnNextMemory" class="btn-step-next">
+          Lanjut Kenangan Berikutnya →
+        </button>
+      </div>
+    </div>
+
+    <!-- TAHAP 2: GABUNGAN SEMUA KARTU POLAROID + PENUTUP -->
+    <div class="combined-scrapbook-stage stage-hidden" id="combinedScrapbookStage">
+      <!-- Grid 6 Kartu Polaroid Gabungan -->
+      <div class="memories-feed" id="memoriesFeed"></div>
+
+      <!-- Pesan Penyemangat Tambahan -->
+      <section class="encouragement-box reveal-item">
+        <div class="tape-strip" aria-hidden="true"></div>
+        <h3>Untuk Vhenix yang Selalu Hebat 🌟</h3>
+        <p>
+          Kalau suatu hari kamu lagi capek atau ngerasa berat, inget ya seberapa jauh kamu udah bertahan dan berusaha. 
+          Kamu gak pernah sendirian — aku selalu ada di sampingmu, dukung kamu, dan sayang kamu setiap saat.
+        </p>
+      </section>
+
+      <!-- Penutup Spesial -->
+      <footer class="finale-card reveal-item">
+        <div class="finale-hearts" aria-hidden="true">🍑 💜 💖 💜 🍑</div>
+        <blockquote class="finale-quote">
+          “Terimakasih ya sudah mau bersama ku sampai sekarang dan aku harap nanti kita bisa bersama selamanya i love you vhenix”
+        </blockquote>
+        <button type="button" id="btnMoreLove" class="btn-love-burst">
+          Kirim Peluk & Ledakan Love Lagi! 💥💖
+        </button>
+        <div class="finale-secondary-actions">
+          <button type="button" id="btnBackToSingle" class="btn-replay">
+            Lihat Satu per Satu Lagi ✨
+          </button>
+          <button type="button" id="btnReplay" class="btn-replay">
+            Ulangi dari Awal ↺
+          </button>
+        </div>
+      </footer>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
